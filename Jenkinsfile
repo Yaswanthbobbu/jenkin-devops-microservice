@@ -1,17 +1,23 @@
-node {
-	stage('Checkout') {
-		echo "Checkout"
-	}
-	stage('Build') {
-		echo "Build"
-	}
-	stage('Documentation') {
-		echo "Documentation"
-	}
-	stage('Test') {
-		echo "Test"
-	}
-	stage('Report') {
-		echo "Report"
-	}
+// DECLARATIVE
+
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo "Build"
+            }
+        }
+        stage('Build') {
+            steps {
+                echo "Test"
+            }
+        }
+        stage('Build') {
+            steps {
+                echo "Deploy"
+            }
+        }
+    }
+
 }
