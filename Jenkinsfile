@@ -3,7 +3,7 @@
 pipeline {
     agent {
         docker {
-            image 'aksnfug/maven-jdk11-gradle:latest'
+            image 'yaswanthbobbu/firstapp:1.1'
         }
     }
     stages {
