@@ -34,9 +34,9 @@ pipeline {
                 sh "mvn test"
             }
         }
-        stage('Int_test') {
+        stage('Integration Test') {
             steps {
-                sh "mvn failsafe:int-test failsafe:verify"
+                sh "mvn failsafe:integration-test failsafe:verify"
             }
         }
     }
