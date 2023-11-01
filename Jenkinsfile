@@ -18,6 +18,16 @@ pipeline {
                 echo "Deploy"
             }
         }
+    } 
+    post {
+        always {
+            echo "declarative message shows always"
+        }
+        success {
+            echo "shows only when build is successful"
+        }
+        failure {
+            echo "shows only when build is failure"
+        }
     }
-
 }
