@@ -44,21 +44,24 @@ pipeline {
                 sh "mvn package -DskipTests"
             }
         }
-        stage('Build docker') {
+        stage('Build Docker Image') {
             steps {
-                dockerImage = docker.build("yaswanthbobbu/hello-world-python:0.0.4")
-            }
-        }
-        stage('Push docker') {
-            steps {
-                docker.withRegistry('', 'dockerhub') {
-                    dockerImage.push();
-                    dockerImage.push('latest');
+                script {
+                    def dockerImage = docker.build("your-docker-registry/your-image-name:${env.BUILD_NUMBER}")
                 }
-                
             }
         }
-
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    def dockerImage = docker.build("your-docker-registry/your-image-name:${env.BUILD_NUMBER}")
+                    docker.withRegistry('', 'dockerhub') {
+                        dockerImage.push()
+                        dockerImage.push('latest')
+                    }
+                }
+            }
+        }
     }
     post {
         always {
