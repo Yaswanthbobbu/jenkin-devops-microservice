@@ -1,8 +1,11 @@
 // DECLARATIVE
 
 pipeline {
-    // agent any
-    agent { docker { image 'aksnfug/maven-jdk11-gradle:latest'} }
+    agent {
+        docker {
+            image 'aksnfug/maven-jdk11-gradle:latest'
+        }
+    }
     stages {
         stage('Build') {
             steps {
@@ -20,16 +23,16 @@ pipeline {
                 echo "Deploy"
             }
         }
-    } 
+    }
     post {
         always {
-            echo "declarative message shows always"
+            echo "This message always shows"
         }
         success {
-            echo "shows only when build is successful"
+            echo "This message shows only when the build is successful"
         }
         failure {
-            echo "shows only when build is failure"
+            echo "This message shows only when the build fails"
         }
     }
 }
