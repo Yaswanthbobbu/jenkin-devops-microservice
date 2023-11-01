@@ -2,7 +2,7 @@
 
 pipeline {
     // agent any
-    agent { docker { image 'maven-jdk11-gradle'} }
+    agent { docker { image 'aksnfug/maven-jdk11-gradle:latest'} }
     stages {
         stage('Build') {
             steps {
