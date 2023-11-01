@@ -39,6 +39,26 @@ pipeline {
                 sh "mvn failsafe:integration-test failsafe:verify"
             }
         }
+        stage('package') {
+            steps {
+                sh "mvn package -DskipTests"
+            }
+        }
+        stage('Build docker') {
+            steps {
+                dockerImage = docker.build("yaswanthbobbu/hello-world-python:0.0.4")
+            }
+        }
+        stage('Push docker') {
+            steps {
+                docker.withRegistry('', 'dockerhub') {
+                    dockerImage.push();
+                    dockerImage.push('latest');
+                }
+                
+            }
+        }
+
     }
     post {
         always {
