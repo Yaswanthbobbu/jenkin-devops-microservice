@@ -47,14 +47,13 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def dockerImage = docker.build("your-docker-registry/your-image-name:${env.BUILD_NUMBER}")
+                    def dockerImage = docker.build("yaswanthbobbu/hello-world-python:${env.BUILD_NUMBER}")
                 }
             }
         }
         stage('Push Docker Image') {
             steps {
                 script {
-                    def dockerImage = docker.build("your-docker-registry/your-image-name:${env.BUILD_NUMBER}")
                     docker.withRegistry('', 'dockerhub') {
                         dockerImage.push()
                         dockerImage.push('latest')
